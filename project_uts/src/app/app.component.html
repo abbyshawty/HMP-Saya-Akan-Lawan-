@@ -39,4 +39,23 @@
   </ion-menu>
 
   <ion-router-outlet id="main-content"></ion-router-outlet>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="settings">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Pengaturan</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="about">
+        <ion-icon name="help-circle-outline"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="logout">
+        <ion-icon name="exit-outline"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-app>

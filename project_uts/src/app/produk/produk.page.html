@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Produk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input
+        label="Cari produk"
+        labelPlacement="floating"
+        placeholder="Ketik nama atau kategori"
+        [(ngModel)]="keyword"
+        (keyup)="cari()">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngFor="let p of produk">
+      <ion-label>
+        <h2>{{ p.nama }}</h2>
+        <p>{{ p.kategori }} · Stok: {{ p.stok }}</p>
+      </ion-label>
+      <ion-note slot="end">Rp {{ p.hargaJual }}</ion-note>
+    </ion-item>
+
+    <ion-item *ngIf="produk.length == 0">
+      <ion-label>Produk tidak ditemukan.</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
