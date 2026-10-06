@@ -1,0 +1,23 @@
+.foto {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto 16px;
+  border-radius: var(--simobile-radius-card);
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+}
+
+/* Tinggi 44px supaya tombol mudah dipencet jari di HP. */
+.tombol {
+  height: 44px;
+  margin-top: 12px;
+}
+
+.pesan {
+  margin: 16px 0 0;
+}

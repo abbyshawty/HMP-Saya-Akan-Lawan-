@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/produk"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail Produk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container *ngIf="produk; else tidakAda">
+    <img class="foto" [src]="produk.gambar || fotoBawaan" [alt]="'Foto ' + produk.nama" (error)="gantiKeBawaan($event)" />
+
+    <div class="isi">
+      <h1>{{ produk.nama }}</h1>
+
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label>Kategori</ion-label>
+          <ion-note slot="end">{{ produk.kategori }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Stok</ion-label>
+          <ion-note slot="end" [color]="produk.stok === 0 ? 'danger' : 'medium'">
+            {{ produk.stok === 0 ? 'Habis' : produk.stok }}
+          </ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Harga beli</ion-label>
+          <ion-note slot="end">{{ rp(produk.hargaBeli) }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Harga jual</ion-label>
+          <ion-note slot="end">{{ rp(produk.hargaJual) }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Untung per buah</ion-label>
+          <ion-note slot="end">{{ rp(untungPerBuah()) }}</ion-note>
+        </ion-item>
+      </ion-list>
+
+      <ion-button expand="block" class="tombol" [disabled]="produk.stok === 0" (click)="tambahKeKeranjang()">
+        {{ produk.stok === 0 ? 'Stok habis, belum bisa dijual' : 'Tambah ke keranjang' }}
+      </ion-button>
+      <ion-button expand="block" fill="outline" class="tombol" [routerLink]="['/produk-form', produk.id]">Ubah barang</ion-button>
+
+      <p class="pesan" role="status" *ngIf="pesan">{{ pesan }}</p>
+    </div>
+  </ng-container>
+
+  <ng-template #tidakAda>
+    <div class="keadaan">
+      <h2>Barang tidak ditemukan</h2>
+      <p>Barang ini tidak ada di daftar. Mungkin alamatnya salah.</p>
+      <ion-button routerLink="/produk" routerDirection="back">Kembali ke daftar produk</ion-button>
+    </div>
+  </ng-template>
+</ion-content>
