@@ -1,1 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Dashboard Toko</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Banner Salam & Ringkasan Toko -->
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-subtitle>Selamat Datang,</ion-card-subtitle>
+      <ion-card-title>Toko Makmur Jaya</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Berikut ringkasan penjualan dan stok toko kamu hari ini.
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Kartu Ringkasan Data (Interpolation Binding) -->
+  <ion-grid>
+    <ion-row>
+      <!-- Kartu Total Produk -->
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Total Produk</ion-card-subtitle>
+            <ion-card-title>{{ totalProduk }} Items</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <!-- Kartu Transaksi Hari Ini -->
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Penjualan Hari Ini</ion-card-subtitle>
+            <ion-card-title>Rp {{ totalTransaksiHariIni | number }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <!-- Kartu Produk Terlaris -->
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Produk Terlaris</ion-card-subtitle>
+            <ion-card-title>{{ produkTerlaris || '-' }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
