@@ -3,13 +3,21 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashboard', // Mengarahkan ke dashboard saat pertama dibuka
+    pathMatch: 'full'
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'dashboard', // Rute Dashboard
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'cart', // Rute Cart / Keranjang
+    loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
   },
   {
     path: 'produk/:id',
