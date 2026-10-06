@@ -1,0 +1,18 @@
+/* Kolom yang salah ditandai garis merah di bawahnya dan teks pesan, jadi tidak hanya mengandalkan warna. */
+ion-item.salah {
+  --border-color: var(--ion-color-danger);
+  --border-width: 0 0 2px 0;
+  --inner-border-width: 0;
+}
+
+.pesan-error {
+  margin: 4px 16px 8px;
+  font-size: 0.875rem;
+  color: var(--ion-color-danger);
+}
+
+/* Tinggi 44px supaya tombol mudah dipencet jari di HP. */
+.tombol-simpan {
+  height: 44px;
+  margin-top: 24px;
+}
