@@ -25,6 +25,10 @@
       </ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-button routerLink="/produk-form" fill="outline" size="default">Tambah barang</ion-button>
+    </ion-item>
+
     <ion-item *ngFor="let p of produk">
       <ion-thumbnail slot="start">
         <img [src]="p.gambar || fotoBawaan" [alt]="p.nama" (error)="gantiKeBawaan($event)" width="56" height="56" />

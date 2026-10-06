@@ -63,3 +63,9 @@ ion-card {
 ion-toolbar :focus-visible {
   outline-color: var(--simobile-bar-fg);
 }
+
+/* Keadaan kosong atau galat: pesan dan tombol keluar, dipakai halaman detail dan form. */
+.keadaan {
+  padding: 32px 16px;
+  text-align: center;
+}

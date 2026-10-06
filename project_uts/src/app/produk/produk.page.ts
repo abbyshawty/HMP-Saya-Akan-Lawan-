@@ -26,6 +26,11 @@ export class ProdukPage implements OnInit {
     this.produk = this.ProdukService.cariProduk('');
   }
 
+  /** Ionic menyimpan halaman di cache, jadi daftar dimuat ulang tiap halaman dibuka supaya barang baru muncul. */
+  ionViewWillEnter() {
+    this.cari();
+  }
+
   cari() {
     this.produk = this.ProdukService.cariProduk(this.keyword);
   }

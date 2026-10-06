@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/produk"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ idUbah !== null ? 'Ubah Barang' : 'Tambah Barang' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="keadaan" *ngIf="tidakDitemukan">
+    <h2>Barang tidak ditemukan</h2>
+    <p>Barang yang mau diubah tidak ada di daftar. Mungkin alamatnya salah.</p>
+    <ion-button routerLink="/produk" routerDirection="back">Kembali ke daftar produk</ion-button>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="simpan()" novalidate *ngIf="!tidakDitemukan">
+    <ion-item [class.salah]="pesanError('nama')">
+      <ion-input label="Nama barang" labelPlacement="floating" formControlName="nama"
+        autocomplete="off" [attr.aria-invalid]="pesanError('nama') ? 'true' : null"></ion-input>
+    </ion-item>
+    <p class="pesan-error" role="alert" *ngIf="pesanError('nama') as pesan">{{ pesan }}</p>
+
+    <ion-item [class.salah]="pesanError('kategori')">
+      <ion-select label="Kategori" labelPlacement="floating" formControlName="kategori" interface="popover"
+        placeholder="Pilih kategori">
+        <ion-select-option *ngFor="let k of produkService.kategori" [value]="k">{{ k }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <p class="pesan-error" role="alert" *ngIf="pesanError('kategori') as pesan">{{ pesan }}</p>
+
+    <ion-item [class.salah]="pesanError('hargaBeli')">
+      <ion-input label="Harga beli (Rp)" labelPlacement="floating" formControlName="hargaBeli"
+        inputmode="numeric" autocomplete="off" [attr.aria-invalid]="pesanError('hargaBeli') ? 'true' : null"></ion-input>
+    </ion-item>
+    <p class="pesan-error" role="alert" *ngIf="pesanError('hargaBeli') as pesan">{{ pesan }}</p>
+
+    <ion-item [class.salah]="pesanError('hargaJual')">
+      <ion-input label="Harga jual (Rp)" labelPlacement="floating" formControlName="hargaJual"
+        inputmode="numeric" autocomplete="off" [attr.aria-invalid]="pesanError('hargaJual') ? 'true' : null"></ion-input>
+    </ion-item>
+    <p class="pesan-error" role="alert" *ngIf="pesanError('hargaJual') as pesan">{{ pesan }}</p>
+
+    <ion-item [class.salah]="pesanError('stok')">
+      <ion-input label="Stok" labelPlacement="floating" formControlName="stok"
+        inputmode="numeric" autocomplete="off" [attr.aria-invalid]="pesanError('stok') ? 'true' : null"></ion-input>
+    </ion-item>
+    <p class="pesan-error" role="alert" *ngIf="pesanError('stok') as pesan">{{ pesan }}</p>
+
+    <ion-item [class.salah]="pesanError('gambar')">
+      <ion-input label="Alamat foto (boleh kosong)" labelPlacement="floating" formControlName="gambar"
+        type="url" inputmode="url" autocomplete="off" placeholder="https://"
+        [attr.aria-invalid]="pesanError('gambar') ? 'true' : null"></ion-input>
+    </ion-item>
+    <p class="pesan-error" role="alert" *ngIf="pesanError('gambar') as pesan">{{ pesan }}</p>
+
+    <ion-button type="submit" expand="block" class="tombol-simpan">
+      {{ idUbah !== null ? 'Simpan perubahan' : 'Simpan barang' }}
+    </ion-button>
+  </form>
+</ion-content>
