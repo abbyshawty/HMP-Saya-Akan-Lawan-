@@ -1,2 +1,149 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+
+/*
+  Tema SIMOBILE. Dibuat dari color generator Ionic (Week 7), lalu rasio kontras tiap pasangan dicek >= 4.5:1.
+
+  Alasan palet (dua warna inti + satu aksen):
+  - Hijau (primary, tertiary): warna utama SIMOBILE, dipakai untuk aksi utama dan navigasi.
+  - Kuning (secondary, warning): satu-satunya aksen, dipakai untuk label harga dan angka kunci.
+  - Merah (danger): hanya untuk pesan salah dan stok habis, bukan dekorasi.
+  - Medium diganti dari bawaan Ionic (#92949c, kontras 3:1) menjadi #5A5D63 supaya teks kecil terbaca.
+*/
+
+:root {
+  --ion-color-primary: #2E7D32;
+  --ion-color-primary-rgb: 46, 125, 50;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #286e2c;
+  --ion-color-primary-tint: #438a47;
+
+  --ion-color-secondary: #F4B400;
+  --ion-color-secondary-rgb: 244, 180, 0;
+  --ion-color-secondary-contrast: #1A1A1A;
+  --ion-color-secondary-contrast-rgb: 26, 26, 26;
+  --ion-color-secondary-shade: #d79e00;
+  --ion-color-secondary-tint: #f5bc1a;
+
+  --ion-color-tertiary: #1B5E20;
+  --ion-color-tertiary-rgb: 27, 94, 32;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #18531c;
+  --ion-color-tertiary-tint: #326e36;
+
+  --ion-color-success: #2E7D32;
+  --ion-color-success-rgb: 46, 125, 50;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #286e2c;
+  --ion-color-success-tint: #438a47;
+
+  --ion-color-warning: #F4B400;
+  --ion-color-warning-rgb: 244, 180, 0;
+  --ion-color-warning-contrast: #1A1A1A;
+  --ion-color-warning-contrast-rgb: 26, 26, 26;
+  --ion-color-warning-shade: #d79e00;
+  --ion-color-warning-tint: #f5bc1a;
+
+  --ion-color-danger: #C62828;
+  --ion-color-danger-rgb: 198, 40, 40;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #ae2323;
+  --ion-color-danger-tint: #cc3e3e;
+
+  --ion-color-medium: #5A5D63;
+  --ion-color-medium-rgb: 90, 93, 99;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #4f5257;
+  --ion-color-medium-tint: #6b6d73;
+
+  --ion-color-light: #F1EFE3;
+  --ion-color-light-rgb: 241, 239, 227;
+  --ion-color-light-contrast: #1A1A1A;
+  --ion-color-light-contrast-rgb: 26, 26, 26;
+  --ion-color-light-shade: #d4d2c8;
+  --ion-color-light-tint: #f2f1e6;
+
+
+  --ion-background-color: #FBFAF4;
+  --ion-background-color-rgb: 251, 250, 244;
+  --ion-text-color: #1B1F1B;
+  --ion-text-color-rgb: 27, 31, 27;
+  --ion-item-background: #FFFFFF;
+  --ion-card-background: #FFFFFF;
+
+  /* Font sistem: aplikasi harus jalan tanpa internet, jadi tidak ada font unduhan. */
+  --ion-font-family: -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Warna bar atas dan kartu utama. Di mode gelap hijau dibuat gelap agar teks putih tetap terbaca (kontras > 7:1). */
+  --simobile-bar-bg: var(--ion-color-primary);
+  --simobile-bar-fg: var(--ion-color-primary-contrast);
+
+  /* Radius konsisten: kartu dan kolom isian 10px, tombol 6px. Tidak ada elemen berbentuk pil. */
+  --simobile-radius-card: 10px;
+  --simobile-radius-control: 6px;
+
+  /* Garis fokus keyboard. Kuning terlalu pucat di latar terang (kontras < 2:1), jadi mode terang memakai hijau tua. */
+  --simobile-focus: var(--ion-color-tertiary);
+}
+
+/* Mode gelap: kelas ini dipasang di <html> oleh TemaService. */
+.ion-palette-dark {
+  --simobile-bar-bg: #1B3A20;
+  --simobile-bar-fg: #ffffff;
+  --simobile-focus: #F4B400;
+
+  --ion-color-primary: #81C784;
+  --ion-color-primary-rgb: 129, 199, 132;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #72af74;
+  --ion-color-primary-tint: #8ecd90;
+
+  --ion-color-secondary: #F4B400;
+  --ion-color-secondary-rgb: 244, 180, 0;
+  --ion-color-secondary-contrast: #1A1A1A;
+  --ion-color-secondary-contrast-rgb: 26, 26, 26;
+  --ion-color-secondary-shade: #d79e00;
+  --ion-color-secondary-tint: #f5bc1a;
+
+  --ion-color-tertiary: #A5D6A7;
+  --ion-color-tertiary-rgb: 165, 214, 167;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #91bc93;
+  --ion-color-tertiary-tint: #aedab0;
+
+  --ion-color-success: #81C784;
+  --ion-color-success-rgb: 129, 199, 132;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0, 0, 0;
+  --ion-color-success-shade: #72af74;
+  --ion-color-success-tint: #8ecd90;
+
+  --ion-color-warning: #F4B400;
+  --ion-color-warning-rgb: 244, 180, 0;
+  --ion-color-warning-contrast: #1A1A1A;
+  --ion-color-warning-contrast-rgb: 26, 26, 26;
+  --ion-color-warning-shade: #d79e00;
+  --ion-color-warning-tint: #f5bc1a;
+
+  --ion-color-danger: #FF8A80;
+  --ion-color-danger-rgb: 255, 138, 128;
+  --ion-color-danger-contrast: #000000;
+  --ion-color-danger-contrast-rgb: 0, 0, 0;
+  --ion-color-danger-shade: #e07971;
+  --ion-color-danger-tint: #ff968d;
+
+  --ion-color-medium: #B0B3BA;
+  --ion-color-medium-rgb: 176, 179, 186;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast-rgb: 0, 0, 0;
+  --ion-color-medium-shade: #9b9ea4;
+  --ion-color-medium-tint: #b8bbc1;
+
+}
