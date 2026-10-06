@@ -33,5 +33,33 @@
  */
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+/* Mode gelap dinyalakan lewat kelas .ion-palette-dark oleh TemaService, bukan mengikuti setelan HP. */
+@import "@ionic/angular/css/palettes/dark.class.css";
+/* @import "@ionic/angular/css/palettes/dark.system.css"; */
+
+ion-toolbar {
+  --background: var(--simobile-bar-bg);
+  --color: var(--simobile-bar-fg);
+}
+
+ion-button {
+  --border-radius: var(--simobile-radius-control);
+  font-weight: 600;
+  text-transform: none;
+}
+
+ion-card {
+  border-radius: var(--simobile-radius-card);
+  box-shadow: none;
+  border: 1px solid var(--ion-background-color-step-150, rgba(0, 0, 0, 0.12));
+}
+
+:focus-visible {
+  outline: 3px solid var(--simobile-focus);
+  outline-offset: 2px;
+}
+
+/* Di atas bar hijau, garis fokus memakai warna teks bar supaya tetap terlihat. */
+ion-toolbar :focus-visible {
+  outline-color: var(--simobile-bar-fg);
+}
