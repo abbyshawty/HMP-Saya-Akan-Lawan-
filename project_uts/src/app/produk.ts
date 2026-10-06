@@ -1,9 +1,21 @@
 // src/app/produk.service.ts
 import { Injectable } from '@angular/core';
 
+export interface Produk {
+  id: number;
+  nama: string;
+  kategori: string;
+  hargaBeli: number;
+  hargaJual: number;
+  stok: number;
+  gambar: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ProdukService {
-  produk = [
+  kategori: string[] = ['Sembako', 'Makanan', 'Minuman', 'Kebersihan', 'Lainnya'];
+
+  produk: Produk[] = [
     { id: 1, nama: 'Beras 5kg', kategori: 'Sembako', hargaBeli: 58000, hargaJual: 65000, stok: 20, gambar: '' },
     { id: 2, nama: 'Minyak Goreng 1L', kategori: 'Sembako', hargaBeli: 14000, hargaJual: 17000, stok: 35, gambar: '' },
     { id: 3, nama: 'Gula Pasir 1kg', kategori: 'Sembako', hargaBeli: 15000, hargaJual: 18000, stok: 0, gambar: '' },
@@ -25,5 +37,26 @@ export class ProdukService {
       p.nama.toLowerCase().includes(k) ||
       p.kategori.toLowerCase().includes(k)
     );
+  }
+
+  ambil(id: number): Produk | undefined {
+    return this.produk.find(p => p.id === id);
+  }
+
+  tambah(data: Omit<Produk, 'id'>): Produk {
+    const id = this.produk.reduce((terbesar, p) => Math.max(terbesar, p.id), 0) + 1;
+    const baru: Produk = { id, ...data };
+    this.produk.push(baru);
+    return baru;
+  }
+
+  /** Objek lama diubah di tempat, jadi daftar yang sudah memegangnya ikut berubah. */
+  ubah(id: number, data: Omit<Produk, 'id'>): boolean {
+    const ada = this.ambil(id);
+    if (!ada) {
+      return false;
+    }
+    Object.assign(ada, data);
+    return true;
   }
 }
