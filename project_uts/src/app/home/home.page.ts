@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TemaService } from '../services/tema.service';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,6 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public temaService: TemaService) {}
 
 }

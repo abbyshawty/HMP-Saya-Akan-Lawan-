@@ -7,6 +7,12 @@
     <ion-title>
       Blank
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="temaService.balik()" [attr.aria-label]="temaService.gelap ? 'Pakai mode terang' : 'Pakai mode gelap'">
+        <ion-icon slot="icon-only" [name]="temaService.gelap ? 'sunny' : 'moon'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
