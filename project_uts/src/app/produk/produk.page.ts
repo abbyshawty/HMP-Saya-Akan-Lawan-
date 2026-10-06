@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdukService } from '../produk';
+import { TemaService } from '../services/tema.service';
 
 @Component({
   selector: 'app-produk',
@@ -12,7 +13,7 @@ export class ProdukPage implements OnInit {
   produk: any[] = [];
 
 
-  constructor(private ProdukService: ProdukService) { }
+  constructor(private ProdukService: ProdukService, public temaService: TemaService) { }
 
   ngOnInit() {
     this.produk = this.ProdukService.cariProduk('');
