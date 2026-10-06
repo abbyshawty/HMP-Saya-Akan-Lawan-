@@ -7,9 +7,10 @@
     </ion-header>
     <ion-content>
       <ion-list>
+       
         <ion-menu-toggle>
-          <ion-item routerLink="/home" routerDirection="root">
-            <ion-icon name="home-outline" slot="start"></ion-icon>
+          <ion-item routerLink="/dashboard" routerDirection="root">
+            <ion-icon name="grid-outline" slot="start"></ion-icon>
             <ion-label>Dashboard</ion-label>
           </ion-item>
         </ion-menu-toggle>
@@ -18,6 +19,14 @@
           <ion-item routerLink="/produk" routerDirection="root">
             <ion-icon name="list-outline" slot="start"></ion-icon>
             <ion-label>Produk</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+      
+        <ion-menu-toggle>
+          <ion-item routerLink="/cart" routerDirection="root">
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
+            <ion-label>Keranjang</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
@@ -43,7 +52,7 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="settings">
-        <ion-icon name="home"></ion-icon>
+        <ion-icon name="settings-outline"></ion-icon>
         <ion-label>Pengaturan</ion-label>
       </ion-tab-button>
 
