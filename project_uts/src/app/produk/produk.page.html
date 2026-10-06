@@ -26,7 +26,10 @@
     </ion-item>
 
     <ion-item *ngFor="let p of produk">
-      <ion-label>
+      <ion-thumbnail slot="start">
+        <img [src]="p.gambar || fotoBawaan" [alt]="p.nama" (error)="gantiKeBawaan($event)" width="56" height="56" />
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap">
         <h2>{{ p.nama }}</h2>
         <p>{{ p.kategori }} · Stok: {{ p.stok }}</p>
       </ion-label>
