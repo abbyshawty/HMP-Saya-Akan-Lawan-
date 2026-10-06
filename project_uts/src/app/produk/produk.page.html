@@ -26,15 +26,21 @@
     </ion-item>
 
     <ion-item *ngFor="let p of produk">
-      <ion-label>
+      <ion-thumbnail slot="start">
+        <img [src]="p.gambar || fotoBawaan" [alt]="p.nama" (error)="gantiKeBawaan($event)" width="56" height="56" />
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap">
         <h2>{{ p.nama }}</h2>
         <p>{{ p.kategori }} · Stok: {{ p.stok }}</p>
       </ion-label>
       <ion-note slot="end">Rp {{ p.hargaJual }}</ion-note>
+      <ion-button slot="end" class="tombol-tambah" [disabled]="p.stok === 0" (click)="tambahKeKeranjang(p)">Tambah</ion-button>
     </ion-item>
 
     <ion-item *ngIf="produk.length == 0">
       <ion-label>Produk tidak ditemukan.</ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-toast [isOpen]="pesan !== ''" [message]="pesan" [duration]="2000" (didDismiss)="pesan = ''"></ion-toast>
 </ion-content>
