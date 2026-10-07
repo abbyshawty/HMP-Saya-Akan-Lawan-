@@ -22,11 +22,11 @@
   <ion-card *ngFor="let item of cartItems">
     <ion-card-header>
       <ion-card-title>{{ item.nama }}</ion-card-title>
-      <ion-card-subtitle>Rp {{ item.harga | number }} / item</ion-card-subtitle>
+      <ion-card-subtitle>{{ rp(item.harga) }} / item</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      <p>Subtotal: <strong>Rp {{ item.harga * item.qty | number }}</strong></p>
+      <p>Subtotal: <strong>{{ rp(item.harga * item.qty) }}</strong></p>
       
       <div class="ion-margin-top ion-text-end">
         <ion-button size="small" fill="outline" (click)="kurangQty(item)">-</ion-button>
@@ -40,10 +40,10 @@
   <ion-card *ngIf="cartItems.length > 0">
     <ion-card-content>
       <h3><strong>Total Pembayaran:</strong></h3>
-      <h2 style="color: var(--ion-color-primary);">Rp {{ totalHarga | number }}</h2>
+      <h2 style="color: var(--ion-color-primary);">{{ rp(totalHarga) }}</h2>
       
       <ion-button expand="block" color="success" class="ion-margin-top" (click)="checkout()">
-        Simulasi Checkout
+        Konfirmasi Transaksi
       </ion-button>
     </ion-card-content>
   </ion-card>

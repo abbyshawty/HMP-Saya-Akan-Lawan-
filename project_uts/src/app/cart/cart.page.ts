@@ -3,6 +3,7 @@ import { AnimationController, AlertController } from '@ionic/angular';
 import { KeranjangService, ItemKeranjang } from '../services/keranjang.service';
 import { TransactionService } from '../services/transaction.service';
 import { ProductService } from '../services/product.service';
+import { formatRupiah } from '../shared/format';
 
 @Component({
   selector: 'app-cart',
@@ -11,6 +12,8 @@ import { ProductService } from '../services/product.service';
   standalone: false,
 })
 export class CartPage {
+  rp = formatRupiah;
+
   constructor(
     private animationCtrl: AnimationController,
     private alertController: AlertController,
@@ -79,7 +82,11 @@ export class CartPage {
   }
 
   animateCartCard() {
-    const cardElement = document.querySelector('ion-card') as HTMLElement;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    // Dibatasi ke app-cart karena halaman Tab lain tetap ada di DOM dan punya ion-card juga.
+    const cardElement = document.querySelector('app-cart ion-card') as HTMLElement;
     if (cardElement) {
       const animation = this.animationCtrl
         .create()
