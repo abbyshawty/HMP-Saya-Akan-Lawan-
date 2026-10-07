@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product, ProductService } from '../services/product.service';
 import { TemaService } from '../services/tema.service';
 import { KeranjangService } from '../services/keranjang.service';
@@ -9,9 +9,8 @@ import { KeranjangService } from '../services/keranjang.service';
   styleUrls: ['./produk.page.scss'],
   standalone: false,
 })
-export class ProdukPage implements OnInit {
+export class ProdukPage {
   keyword: string = '';
-  produk: Product[] = [];
   pesan: string = '';
 
   readonly fotoBawaan =
@@ -22,17 +21,13 @@ export class ProdukPage implements OnInit {
 
   constructor(private productService: ProductService, public temaService: TemaService, private keranjangService: KeranjangService) { }
 
-  ngOnInit() {
-    this.produk = this.productService.cariProduk('');
-  }
-
-  /** Ionic menyimpan halaman di cache, jadi daftar dimuat ulang tiap halaman dibuka supaya barang baru muncul. */
-  ionViewWillEnter() {
-    this.cari();
-  }
-
-  cari() {
-    this.produk = this.productService.cariProduk(this.keyword);
+  /**
+   * Daftar dihitung dari service setiap kali tampilan diperiksa, jadi selalu mengikuti kata kunci
+   * dan barang baru dari form. Hook ionViewWillEnter tidak terpanggil saat kembali ke tab Produk
+   * dari halaman di luar Tab, dan aplikasi ini berjalan tanpa zone.js.
+   */
+  get produk(): Product[] {
+    return this.productService.cariProduk(this.keyword);
   }
 
   /** Foto yang gagal dimuat diganti gambar bawaan. */
