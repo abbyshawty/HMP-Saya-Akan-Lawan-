@@ -48,7 +48,10 @@ export class KeranjangService {
   }
 
   hapus(id: number): void {
-    this.items = this.items.filter((i) => i.id !== id);
+    const index = this.items.findIndex((i) => i.id === id);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+    }
   }
 
   subtotal(item: ItemKeranjang): number {
@@ -64,6 +67,6 @@ export class KeranjangService {
   }
 
   kosongkan(): void {
-    this.items = [];
+    this.items.length = 0;
   }
 }

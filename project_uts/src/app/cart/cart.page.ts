@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { AnimationController, AlertController } from '@ionic/angular';
 import { KeranjangService, ItemKeranjang } from '../services/keranjang.service';
 import { TransactionService } from '../services/transaction.service';
@@ -14,8 +14,13 @@ export class CartPage {
     private animationCtrl: AnimationController,
     private alertController: AlertController,
     public keranjangService: KeranjangService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private cd: ChangeDetectorRef
   ) {}
+
+  ionViewWillEnter() {
+    this.cd.detectChanges();
+  }
 
   ionViewDidEnter() {
     this.animateCartCard();
