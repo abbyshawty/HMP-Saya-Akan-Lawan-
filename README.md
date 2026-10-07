@@ -117,10 +117,10 @@ Penjelasan arsitektur dan alur data ada di [docs/arsitektur.md](docs/arsitektur.
 
 | Anggota | Akun GitHub | NRP | Bagian |
 |---|---|---|---|
-| Michael | Freakdih | [ISI: NRP] | Struktur navigasi, pencarian produk, riwayat transaksi |
-| Nadya | s160424202-star | [ISI: NRP] | Dashboard, keranjang dan checkout |
-| Velyn | Fellina-Ivanka | [ISI: NRP] | Detail produk, form tambah dan ubah, animasi |
-| Abby | abbyshawty | [ISI: NRP] | Property dan event binding, Angular service, tema dan mode gelap |
+| Michael | Freakdih | 160424018 | Struktur navigasi, pencarian produk, riwayat transaksi |
+| Nadya | s160424202-star | 160424202 | Dashboard, keranjang dan checkout |
+| Velyn | Fellina-Ivanka | 160424184 | Detail produk, form tambah dan ubah, animasi |
+| Abby | abbyshawty | 160424142 | Property dan event binding, Angular service, tema dan mode gelap |
 
 Aturan kerja tim ada di [docs/kontribusi.md](docs/kontribusi.md).
 
