@@ -2,45 +2,29 @@
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu List</ion-title>
+        <ion-title>SIMOBILE</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
-       
         <ion-menu-toggle>
-          <ion-item routerLink="/dashboard" routerDirection="root">
-            <ion-icon name="grid-outline" slot="start"></ion-icon>
-            <ion-label>Dashboard</ion-label>
+          <ion-item routerLink="/pengaturan" routerDirection="forward" button detail="false">
+            <ion-icon name="settings-outline" slot="start"></ion-icon>
+            <ion-label>Pengaturan</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle>
-          <ion-item routerLink="/produk" routerDirection="root">
-            <ion-icon name="list-outline" slot="start"></ion-icon>
-            <ion-label>Produk</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-
-      
-        <ion-menu-toggle>
-          <ion-item routerLink="/cart" routerDirection="root">
-            <ion-icon name="cart-outline" slot="start"></ion-icon>
-            <ion-label>Keranjang</ion-label>
+          <ion-item routerLink="/tentang" routerDirection="forward" button detail="false">
+            <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+            <ion-label>Tentang Aplikasi</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle>
-          <ion-item routerLink="/transaksi" routerDirection="root">
-            <ion-icon name="receipt-outline" slot="start"></ion-icon>
-            <ion-label>Transaksi</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle>
-          <ion-item routerLink="/profile" routerDirection="root">
-            <ion-icon name="person-outline" slot="start"></ion-icon>
-            <ion-label>Profile</ion-label>
+          <ion-item button detail="false" (click)="konfirmasiLogout()">
+            <ion-icon name="exit-outline" slot="start"></ion-icon>
+            <ion-label>Logout</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
@@ -48,23 +32,4 @@
   </ion-menu>
 
   <ion-router-outlet id="main-content"></ion-router-outlet>
-
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="settings">
-        <ion-icon name="settings-outline"></ion-icon>
-        <ion-label>Pengaturan</ion-label>
-      </ion-tab-button>
-
-      <ion-tab-button tab="about">
-        <ion-icon name="help-circle-outline"></ion-icon>
-        <ion-label>About</ion-label>
-      </ion-tab-button>
-
-      <ion-tab-button tab="logout">
-        <ion-icon name="exit-outline"></ion-icon>
-        <ion-label>Logout</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
 </ion-app>
