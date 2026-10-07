@@ -3,6 +3,7 @@ import { AnimationController, AlertController } from '@ionic/angular';
 import { KeranjangService, ItemKeranjang } from '../services/keranjang.service';
 import { TransactionService } from '../services/transaction.service';
 import { ProductService } from '../services/product.service';
+import { formatRupiah } from '../shared/format';
 
 @Component({
   selector: 'app-cart',
@@ -11,6 +12,8 @@ import { ProductService } from '../services/product.service';
   standalone: false,
 })
 export class CartPage {
+  rp = formatRupiah;
+
   constructor(
     private animationCtrl: AnimationController,
     private alertController: AlertController,
