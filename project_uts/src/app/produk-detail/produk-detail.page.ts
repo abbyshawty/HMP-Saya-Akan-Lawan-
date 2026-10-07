@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Produk, ProdukService } from '../produk';
+import { Product, ProductService } from '../services/product.service';
 import { KeranjangService } from '../services/keranjang.service';
 import { AnimasiService } from '../services/animasi.service';
 import { formatRupiah, GAMBAR_BAWAAN } from '../shared/format';
@@ -12,14 +12,14 @@ import { formatRupiah, GAMBAR_BAWAAN } from '../shared/format';
   standalone: false,
 })
 export class ProdukDetailPage implements OnInit {
-  produk: Produk | undefined;
+  produk: Product | undefined;
   pesan = '';
   fotoBawaan = GAMBAR_BAWAAN;
   rp = formatRupiah;
 
   constructor(
     private route: ActivatedRoute,
-    private produkService: ProdukService,
+    private productService: ProductService,
     private keranjangService: KeranjangService,
     private animasiService: AnimasiService
   ) {}
@@ -27,7 +27,7 @@ export class ProdukDetailPage implements OnInit {
   ngOnInit(): void {
     // Parameter :id dari URL /produk/:id. Memakai subscribe supaya halaman ikut berubah kalau id berubah.
     this.route.params.subscribe((params) => {
-      this.produk = this.produkService.ambil(Number(params['id']));
+      this.produk = this.productService.getProductById(Number(params['id']));
       this.pesan = '';
     });
   }

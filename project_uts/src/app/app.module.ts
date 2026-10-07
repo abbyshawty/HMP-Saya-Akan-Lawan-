@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { ProductService } from './services/product.service';
-import { CartService } from './services/cart.service';
+import { KeranjangService } from './services/keranjang.service';
 import { TransactionService } from './services/transaction.service';
 
 @NgModule({
@@ -20,11 +20,7 @@ import { TransactionService } from './services/transaction.service';
     AppRoutingModule
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    // Mendaftarkan service secara eksplisit
-    ProductService,
-    CartService,
-    TransactionService
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
 })

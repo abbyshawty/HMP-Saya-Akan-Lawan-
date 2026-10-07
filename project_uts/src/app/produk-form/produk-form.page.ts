@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProdukService } from '../produk';
+import { ProductService } from '../services/product.service';
 import { AnimasiService } from '../services/animasi.service';
 import { hargaValid, stokValid, tidakKosong, urlFotoValid } from '../shared/validators';
 
@@ -44,7 +44,7 @@ export class ProdukFormPage implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    public produkService: ProdukService,
+    public productService: ProductService,
     private animasiService: AnimasiService
   ) {
     // FormGroup dibuat di constructor, bukan di deklarasi field, karena this.fb belum ada saat field diisi.
@@ -64,7 +64,7 @@ export class ProdukFormPage implements OnInit {
       if (params['id'] === undefined) {
         return;
       }
-      const produk = this.produkService.ambil(Number(params['id']));
+      const produk = this.productService.getProductById(Number(params['id']));
       if (!produk) {
         this.tidakDitemukan = true;
         return;
@@ -109,9 +109,9 @@ export class ProdukFormPage implements OnInit {
       gambar: nilai.gambar.trim(),
     };
     if (this.idUbah !== null) {
-      this.produkService.ubah(this.idUbah, data);
+      this.productService.ubah(this.idUbah, data);
     } else {
-      this.produkService.tambah(data);
+      this.productService.tambah(data);
     }
     this.router.navigate(['/produk']);
   }

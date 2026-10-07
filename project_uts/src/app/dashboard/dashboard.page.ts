@@ -5,7 +5,8 @@ import { TransactionService } from '../services/transaction.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
+  //styleUrls: ['./dashboard.page.scss'],
+  standalone: false,
 })
 export class DashboardPage implements OnInit {
   totalProduk: number = 0;

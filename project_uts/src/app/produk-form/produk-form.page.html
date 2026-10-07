@@ -24,7 +24,7 @@
     <ion-item [class.salah]="pesanError('kategori')">
       <ion-select label="Kategori" labelPlacement="floating" formControlName="kategori" interface="popover"
         placeholder="Pilih kategori">
-        <ion-select-option *ngFor="let k of produkService.kategori" [value]="k">{{ k }}</ion-select-option>
+        <ion-select-option *ngFor="let k of productService.kategori" [value]="k">{{ k }}</ion-select-option>
       </ion-select>
     </ion-item>
     <p class="pesan-error" role="alert" *ngIf="pesanError('kategori') as pesan">{{ pesan }}</p>

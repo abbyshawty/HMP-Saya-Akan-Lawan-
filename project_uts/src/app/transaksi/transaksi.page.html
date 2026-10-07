@@ -1,0 +1,25 @@
+<!-- transaksi/transaksi.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Riwayat Transaksi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let t of daftar" [routerLink]="['/transaksi', t.id]">
+      <ion-label>
+        <h2>Transaksi #{{ t.id }}</h2>
+        <p>{{ t.tanggal | date:'dd MMM yyyy, HH:mm' }} · {{ t.items.length }} jenis barang</p>
+      </ion-label>
+      <ion-note slot="end">{{ rp(t.total) }}</ion-note>
+    </ion-item>
+
+    <ion-item *ngIf="daftar.length === 0">
+      <ion-label>Belum ada transaksi. Selesaikan checkout di keranjang dulu.</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,55 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimationController, AlertController } from '@ionic/angular';
-import { CartService } from '../services/cart.service';
+import { KeranjangService, ItemKeranjang } from '../services/keranjang.service';
 import { TransactionService } from '../services/transaction.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
-  styleUrls: ['./cart.page.scss'],
+  //styleUrls: ['./cart.page.scss'],
   standalone: false,
 })
-export class CartPage implements OnInit {
-  cartItems: any[] = [];
-  totalHarga: number = 0;
-
+export class CartPage {
   constructor(
     private animationCtrl: AnimationController,
     private alertController: AlertController,
-    private cartService: CartService,
+    public keranjangService: KeranjangService,
     private transactionService: TransactionService
   ) {}
-
-  ngOnInit() {}
-
-  ionViewWillEnter() {
-    this.loadCart();
-  }
 
   ionViewDidEnter() {
     this.animateCartCard();
   }
 
-  loadCart() {
-    this.cartItems = this.cartService.getCart();
-    this.hitugTotal();
+  get cartItems(): ItemKeranjang[] {
+    return this.keranjangService.items;
   }
 
-  hitugTotal() {
-    this.totalHarga = this.cartItems.reduce(
-      (sum, item) => sum + item.harga * item.qty,
-      0
-    );
+  get totalHarga(): number {
+    return this.keranjangService.total();
   }
 
-  tambahQty(item: any) {
-    this.cartService.increaseQty(item.id);
-    this.loadCart();
+  tambahQty(item: ItemKeranjang) {
+    this.keranjangService.ubahQty(item.id, 1);
   }
 
-  kurangQty(item: any) {
-    this.cartService.decreaseQty(item.id);
-    this.loadCart();
+  kurangQty(item: ItemKeranjang) {
+    this.keranjangService.ubahQty(item.id, -1);
   }
 
   async checkout() {
@@ -63,9 +48,15 @@ export class CartPage implements OnInit {
       return;
     }
 
-    this.transactionService.addTransaction(this.cartItems, this.totalHarga);
-    this.cartService.clearCart();
-    this.loadCart();
+    // Map ItemKeranjang ke format yang dibutuhkan TransactionService
+    const itemsForTransaction = this.cartItems.map(item => ({
+      id: item.id,
+      nama: item.nama,
+      harga: item.harga,
+      qty: item.qty,
+    }));
+    this.transactionService.addTransaction(itemsForTransaction, this.totalHarga);
+    this.keranjangService.kosongkan();
 
     const alert = await this.alertController.create({
       header: 'Checkout Berhasil!',

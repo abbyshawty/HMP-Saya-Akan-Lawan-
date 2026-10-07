@@ -28,4 +28,35 @@ export class TransactionService {
     };
     this.transactions.push(newTransaction);
   }
+
+  getById(id: number): Transaction | undefined {
+    return this.transactions.find(t => t.id === id);
+  }
+
+    private hariIni(t: Transaction): boolean {
+    return t.tanggal.toDateString() === new Date().toDateString();
+  }
+
+  getTotalTransaksiHariIni(): number {
+    return this.transactions.filter(t => this.hariIni(t)).length;
+  }
+
+  getProdukTerlaris(): string {
+    const jumlah: { [nama: string]: number } = {};
+    for (const t of this.transactions) {
+      for (const i of t.items) {
+        jumlah[i.nama] = (jumlah[i.nama] || 0) + i.qty;
+      }
+    }
+
+    let terlaris = '-';
+    let terbanyak = 0;
+    for (const nama in jumlah) {
+      if (jumlah[nama] > terbanyak) {
+        terbanyak = jumlah[nama];
+        terlaris = nama;
+      }
+    }
+    return terlaris;
+  }
 }
