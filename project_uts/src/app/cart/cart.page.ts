@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { AnimationController, AlertController } from '@ionic/angular';
 import { KeranjangService, ItemKeranjang } from '../services/keranjang.service';
 import { TransactionService } from '../services/transaction.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,6 +16,7 @@ export class CartPage {
     private alertController: AlertController,
     public keranjangService: KeranjangService,
     private transactionService: TransactionService,
+    private productService: ProductService,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -54,12 +56,17 @@ export class CartPage {
     }
 
     // Map ItemKeranjang ke format yang dibutuhkan TransactionService
-    const itemsForTransaction = this.cartItems.map(item => ({
-      id: item.id,
-      nama: item.nama,
-      harga: item.harga,
-      qty: item.qty,
-    }));
+    const itemsForTransaction = this.cartItems.map(item => {
+      // Kurangi stok produk secara real-time
+      this.productService.kurangiStok(item.id, item.qty);
+      return {
+        id: item.id,
+        nama: item.nama,
+        harga: item.harga,
+        qty: item.qty,
+      };
+    });
+    
     this.transactionService.addTransaction(itemsForTransaction, this.totalHarga);
     this.keranjangService.kosongkan();
 

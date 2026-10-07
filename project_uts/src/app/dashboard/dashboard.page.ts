@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { TransactionService } from '../services/transaction.service';
 
@@ -8,27 +8,26 @@ import { TransactionService } from '../services/transaction.service';
   //styleUrls: ['./dashboard.page.scss'],
   standalone: false,
 })
-export class DashboardPage implements OnInit {
-  totalProduk: number = 0;
-  totalTransaksiHariIni: number = 0;
-  produkTerlaris: string = '';
-
+export class DashboardPage {
   constructor(
     private productService: ProductService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ionViewWillEnter() {
-    this.loadDashboardData();
+    this.cd.detectChanges();
   }
 
-  ngOnInit() {
-    this.loadDashboardData();
+  get totalProduk(): number {
+    return this.productService.getTotalProduk();
   }
 
-  loadDashboardData() {
-    this.totalProduk = this.productService.getTotalProduk();
-    this.totalTransaksiHariIni = this.transactionService.getTotalTransaksiHariIni();
-    this.produkTerlaris = this.transactionService.getProdukTerlaris();
+  get totalTransaksiHariIni(): number {
+    return this.transactionService.getTotalTransaksiHariIni();
+  }
+
+  get produkTerlaris(): string {
+    return this.transactionService.getProdukTerlaris();
   }
 }

@@ -38,7 +38,9 @@ export class TransactionService {
   }
 
   getTotalTransaksiHariIni(): number {
-    return this.transactions.filter(t => this.hariIni(t)).length;
+    return this.transactions
+      .filter(t => this.hariIni(t))
+      .reduce((sum, t) => sum + t.total, 0);
   }
 
   getProdukTerlaris(): string {

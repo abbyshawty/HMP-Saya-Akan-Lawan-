@@ -68,4 +68,11 @@ export class ProductService {
     Object.assign(ada, data);
     return true;
   }
+
+  kurangiStok(id: number, qty: number): void {
+    const p = this.getProductById(id);
+    if (p) {
+      p.stok = Math.max(0, p.stok - qty);
+    }
+  }
 }
