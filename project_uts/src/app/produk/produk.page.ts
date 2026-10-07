@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Product, ProductService } from '../services/product.service';
 import { TemaService } from '../services/tema.service';
 import { KeranjangService } from '../services/keranjang.service';
+import { formatRupiah } from '../shared/format';
 
 @Component({
   selector: 'app-produk',
@@ -12,6 +13,7 @@ import { KeranjangService } from '../services/keranjang.service';
 export class ProdukPage {
   keyword: string = '';
   pesan: string = '';
+  rp = formatRupiah;
 
   readonly fotoBawaan =
     'data:image/svg+xml;utf8,' +

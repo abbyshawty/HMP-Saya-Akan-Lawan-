@@ -35,7 +35,7 @@
         <h2><a [routerLink]="['/produk', p.id]">{{ p.nama }}</a></h2>
         <p>{{ p.kategori }} · Stok: {{ p.stok }}</p>
       </ion-label>
-      <ion-note slot="end">Rp {{ p.hargaJual }}</ion-note>
+      <ion-note slot="end">{{ rp(p.hargaJual) }}</ion-note>
       <ion-button slot="end" class="tombol-tambah" [disabled]="p.stok === 0" (click)="tambahKeKeranjang(p)">Tambah</ion-button>
     </ion-item>
 
