@@ -82,7 +82,11 @@ export class CartPage {
   }
 
   animateCartCard() {
-    const cardElement = document.querySelector('ion-card') as HTMLElement;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+    // Dibatasi ke app-cart karena halaman Tab lain tetap ada di DOM dan punya ion-card juga.
+    const cardElement = document.querySelector('app-cart ion-card') as HTMLElement;
     if (cardElement) {
       const animation = this.animationCtrl
         .create()
