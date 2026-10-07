@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product, ProductService } from '../services/product.service';
 import { TemaService } from '../services/tema.service';
 import { KeranjangService } from '../services/keranjang.service';
+import { formatRupiah } from '../shared/format';
 
 @Component({
   selector: 'app-produk',
@@ -13,6 +14,7 @@ export class ProdukPage implements OnInit {
   keyword: string = '';
   produk: Product[] = [];
   pesan: string = '';
+  rp = formatRupiah;
 
   readonly fotoBawaan =
     'data:image/svg+xml;utf8,' +
