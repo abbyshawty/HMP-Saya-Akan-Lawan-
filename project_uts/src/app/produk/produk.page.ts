@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Product, ProductService } from '../services/product.service';
 import { TemaService } from '../services/tema.service';
 import { KeranjangService } from '../services/keranjang.service';
@@ -9,9 +9,8 @@ import { KeranjangService } from '../services/keranjang.service';
   styleUrls: ['./produk.page.scss'],
   standalone: false,
 })
-export class ProdukPage implements OnInit {
+export class ProdukPage {
   keyword: string = '';
-  produk: Product[] = [];
   pesan: string = '';
 
   readonly fotoBawaan =
@@ -20,19 +19,20 @@ export class ProdukPage implements OnInit {
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#E7E4D6"/><path d="M30 46 60 32l30 14v32L60 92 30 78z" fill="none" stroke="#5A5D63" stroke-width="3"/><path d="M30 46 60 60l30-14M60 60v32" fill="none" stroke="#5A5D63" stroke-width="3"/></svg>'
     );
 
-  constructor(private productService: ProductService, public temaService: TemaService, private keranjangService: KeranjangService) { }
+  constructor(private productService: ProductService, public temaService: TemaService, private keranjangService: KeranjangService, private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {
-    this.produk = this.productService.cariProduk('');
-  }
-
-  /** Ionic menyimpan halaman di cache, jadi daftar dimuat ulang tiap halaman dibuka supaya barang baru muncul. */
+  /** Stok bisa berubah dari tab Keranjang, jadi tampilan diperiksa ulang tiap tab Produk dibuka. */
   ionViewWillEnter() {
-    this.cari();
+    this.cd.detectChanges();
   }
 
-  cari() {
-    this.produk = this.productService.cariProduk(this.keyword);
+  /**
+   * Daftar dihitung dari service setiap kali tampilan diperiksa, jadi selalu mengikuti kata kunci
+   * dan barang baru dari form. Hook ionViewWillEnter tidak terpanggil saat kembali ke tab Produk
+   * dari halaman di luar Tab, dan aplikasi ini berjalan tanpa zone.js.
+   */
+  get produk(): Product[] {
+    return this.productService.cariProduk(this.keyword);
   }
 
   /** Foto yang gagal dimuat diganti gambar bawaan. */

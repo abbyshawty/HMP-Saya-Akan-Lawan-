@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Transaction, TransactionService } from '../services/transaction.service';
 import { formatRupiah } from '../shared/format';
 
@@ -13,7 +13,7 @@ export class TransaksiPage implements OnInit {
   rp = formatRupiah;
 
 
-  constructor(private transactionService: TransactionService) { }
+  constructor(private transactionService: TransactionService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.daftar = this.transactionService.getTransactions();
@@ -21,5 +21,6 @@ export class TransaksiPage implements OnInit {
 
   ionViewWillEnter(): void {
     this.daftar = this.transactionService.getTransactions().slice().reverse();
+    this.cd.detectChanges();
   }
 }

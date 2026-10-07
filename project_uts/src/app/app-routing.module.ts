@@ -3,29 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'dashboard', // Mengarahkan ke dashboard saat pertama dibuka
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'dashboard', // Rute Dashboard
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'cart', // Rute Cart / Keranjang
-    loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
-  },
-  {
     path: 'produk/:id',
     loadChildren: () => import('./produk-detail/produk-detail.module').then( m => m.ProdukDetailPageModule)
-  },
-  {
-    path: 'produk',
-    loadChildren: () => import('./produk/produk.module').then( m => m.ProdukPageModule)
   },
   {
     path: 'produk-form',
@@ -40,10 +19,21 @@ const routes: Routes = [
     loadChildren: () => import('./transaksi-detail/transaksi-detail.module').then( m => m.TransaksiDetailPageModule)
   },
   {
-    path: 'transaksi',
-    loadChildren: () => import('./transaksi/transaksi.module').then( m => m.TransaksiPageModule)
+    path: 'pengaturan',
+    loadChildren: () => import('./pengaturan/pengaturan.module').then( m => m.PengaturanPageModule)
   },
-
+  {
+    path: 'tentang',
+    loadChildren: () => import('./tentang/tentang.module').then( m => m.TentangPageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'dashboard'
+  },
 ];
 
 @NgModule({
