@@ -15,7 +15,7 @@
   </ion-header>
 
   <!-- Banner Salam & Ringkasan Toko -->
-  <ion-card color="light">
+  <ion-card>
     <ion-card-header>
       <ion-card-subtitle>Selamat Datang,</ion-card-subtitle>
       <ion-card-title>Toko Makmur Jaya</ion-card-title>
@@ -43,7 +43,7 @@
         <ion-card>
           <ion-card-header>
             <ion-card-subtitle>Penjualan Hari Ini</ion-card-subtitle>
-            <ion-card-title>Rp {{ totalTransaksiHariIni | number }}</ion-card-title>
+            <ion-card-title>{{ rp(totalTransaksiHariIni) }}</ion-card-title>
           </ion-card-header>
         </ion-card>
       </ion-col>
