@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
 
+export interface ItemTransaksi {
+  id: number;
+  nama: string;
+  harga: number;
+  qty: number;
+}
+
 export interface Transaction {
   id: number;
   tanggal: Date;
-  items: any[];
+  items: ItemTransaksi[];
   total: number;
 }
 
@@ -19,7 +26,7 @@ export class TransactionService {
     return this.transactions;
   }
 
-  addTransaction(items: any[], total: number) {
+  addTransaction(items: ItemTransaksi[], total: number) {
     const newTransaction: Transaction = {
       id: this.transactions.length + 1,
       tanggal: new Date(),
