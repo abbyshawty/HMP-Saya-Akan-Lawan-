@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { TransactionService } from '../services/transaction.service';
+import { formatRupiah } from '../shared/format';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,8 @@ import { TransactionService } from '../services/transaction.service';
   standalone: false,
 })
 export class DashboardPage {
+  rp = formatRupiah;
+
   constructor(
     private productService: ProductService,
     private transactionService: TransactionService,
