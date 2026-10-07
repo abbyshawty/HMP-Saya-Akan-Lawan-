@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pengaturan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-toggle [checked]="temaService.gelap" (ionChange)="ubahTema($event.detail.checked)">Mode gelap</ion-toggle>
+    </ion-item>
+  </ion-list>
+  <p class="ion-padding">Mode gelap berlaku untuk semua halaman dan kembali ke terang saat aplikasi dibuka ulang.</p>
+</ion-content>
